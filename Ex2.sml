@@ -13,3 +13,13 @@ fun uncurry f (x,y) = f x y ;
 
 fun floor_equal(x,y) = floor(x) = y;
 
+
+fun sumf f x = if x=0 then f(0) else f(x) + sumf f (x-1);
+
+fun fib(x) = if (x=0) then 0 else if (x=1) then 1 else fib(x-1) + fib(x-2);
+
+
+fun sumsumf n x =  if n=0 then sumf(fn i => i) x else sumf (sumsumf (n-1)) x;
+
+fun comp g i x = if (i=1) then g(x) else g(comp g (i-1) x);
+fun supersum f g x = if (x=0) then f(0) else comp g x f x + supersum f g (x-1);
